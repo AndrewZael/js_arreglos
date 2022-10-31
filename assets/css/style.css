@@ -1,0 +1,14 @@
+#opciones form{
+    top: 0;
+    left: 0;
+}
+.card-body a{
+    right: 1rem;
+    bottom: 1rem;
+}
+.spinner-border{
+    left: 0;
+    right: 0;
+    height: 4rem;
+    width: 4rem;
+}
