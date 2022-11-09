@@ -51,6 +51,7 @@ const btnReset = document.getElementById('btn-reset');
 const content = document.getElementById('lista-proyectos');
 const elemTotal = document.getElementById('total');
 let countTotal = proyects.length;
+let html = '';
 
 init();
 
@@ -63,15 +64,17 @@ btnSearch.addEventListener('click', function(){
 
         spinner();
         setTimeout(function(){
+            html = '';
             content.innerHTML = '';
             elemTotal.innerHTML = '';
             countTotal = 0;
             for (const proyect of proyects) {
                 if(proyect.rooms === rooms && proyect.meters >= since &&  proyect.meters <= until){
                     countTotal++;
-                    content.innerHTML += getProyect(proyect.name, proyect.description, proyect.src, proyect.rooms, proyect.meters);
+                    html += getProyect(proyect.name, proyect.description, proyect.src, proyect.rooms, proyect.meters);
                 }
             }
+            content.innerHTML = html;
             elemTotal.innerHTML = countTotal;
             notResult(countTotal);
         },2500);
@@ -95,11 +98,13 @@ function resetForm(){
 }
 
 function init(){
+    html = '';
     content.innerHTML = '';
     elemTotal.innerHTML = proyects.length;
     for(const proyect of proyects) {
-        content.innerHTML += getProyect(proyect.name, proyect.description, proyect.src, proyect.rooms, proyect.meters);
+        html += getProyect(proyect.name, proyect.description, proyect.src, proyect.rooms, proyect.meters);
     }
+    content.innerHTML = html;
 }
 
 function notResult(countProyect){
